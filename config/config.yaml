@@ -1,0 +1,6 @@
+paths:
+  raw_xlsx: data/raw/viettel_thanhhoa_202605.xlsx
+  raw_sheet: Sheet2
+  processed: data/processed/viettel.parquet
+  columns: config/columns.yaml
+target: TUOI_THO_6THANG
