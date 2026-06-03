@@ -1,0 +1,17 @@
+# data thô (không đẩy lên git)
+data/raw/
+*.xlsx
+*.xls
+
+# python / môi trường
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# model artifacts
+*.pkl
+*.joblib
