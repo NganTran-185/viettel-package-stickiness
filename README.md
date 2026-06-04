@@ -4,7 +4,7 @@ Predict, at the moment of sale, whether a newly registered mobile data plan
 will be "sticky" (survive ≥ 6 months) — to flag at-risk revenue early and score
 sales quality, not just volume.
 
-> Built on 59,603 real Viettel data-plan registrations, spanning 327 packages, 1561 sellers, and 73 sales clusters.
+> Built on ~162K rows across 3 months (Mar–May 2026), enabling out-of-time validation, spanning 327 packages, 1561 sellers, and 73 sales clusters.
 
 
 ## 🎯 Problem
