@@ -19,7 +19,7 @@ Phases 1–3 complete: data pipeline (3 months merged), EDA, leakage-audited fea
 | Model | ROC-AUC | PR-AUC|
 |------ |---------|-------| 
 | Logistic Regression (baseline, numeric only) | 0.651 | 0.732 |
-| LightGBM (full feature set) |0.891| 0.897|
+| LightGBM (full feature set) |0.867| 0.880|
 
 ## Leakage hunting (the core of this project)
 A naive baseline scored AUC 0.9995. Rather than trust it, I traced the cause with a per-feature AUC scan and removed three distinct leakage sources, each with a different mechanism:

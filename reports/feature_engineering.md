@@ -1,0 +1,3 @@
+## After running SHAP 
+- SYSTEM_CLIENT: several client values (OMNI_ORDER, campaign_ttpmvt, ussd…) survive at exactly 0% over hundreds of rows → encodes transaction outcome (cancelled/failed/test orders), partial label leak. Channel signal already captured by KENH_DANG_KY.
+- SHAP revealed SYSTEM_CLIENT as the top feature, but per-value inspection showed several client codes survive at exactly 0% — a partial leak (transaction-outcome) hidden inside an otherwise-valid channel column. Aggregate stats had missed it; SHAP's long negative tail surfaced it. =>  Đây là loại leak khó nhất từ trước tới giờ — ẩn trong vài giá trị của một cột mà tổng thể trông hợp lệ.
