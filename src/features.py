@@ -1,9 +1,11 @@
 import pandas as pd
 
+
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
-    # 1. tenure_days
+    
+    
     
     # 2. usage_trend
     df["usage_trend"] = (pd.to_numeric(df["TONG_TIEU_DUNG_N_1"], errors="coerce")
@@ -31,4 +33,5 @@ if __name__ == "__main__":
     cols = [ "usage_trend", "is_out_of_province", "has_usage_history", "price_band"]
     print(df[cols].describe())
     print(df[cols].isna().sum())  
-    print(df["price_band"].value_counts())        # kiểm feature mới có bị thiếu nhiều không
+    print(df["price_band"].value_counts())  
+   

@@ -10,7 +10,7 @@ COLUMNS = yaml.safe_load(open(ROOT / CONFIG["paths"]["columns"], encoding="utf-8
 TARGET       = CONFIG["target"]
 FEATURE_COLS = COLUMNS["feature"]
 LEAKAGE_COLS = COLUMNS["leakage"]
-ENGINEERED = ["tenure_days", "usage_trend", "is_out_of_province", "has_usage_history", "price_band"] 
+ENGINEERED = ["usage_trend", "is_out_of_province", "has_usage_history", "price_band"] 
 
 def load():
     return pd.read_parquet(ROOT / CONFIG["paths"]["processed"])

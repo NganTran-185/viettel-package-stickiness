@@ -4,6 +4,7 @@ from sklearn.metrics import roc_auc_score, average_precision_score
 from src.data import get_model_data
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
+import lightgbm as lgb 
 
 def run_baseline(X_train, X_test, y_train, y_test):
     num = X_train.select_dtypes("number").columns
@@ -41,9 +42,32 @@ def run_baseline(X_train, X_test, y_train, y_test):
           f"PR-AUC={average_precision_score(y_test, p):.3f}")
     return clf
 
+def run_lgbm(X_train, X_test, y_train, y_test):
+    cat_cols = list(X_train.select_dtypes(["object", "category"]).columns)
+
+    Xtr, Xte = X_train.copy(), X_test.copy()
+    for c in cat_cols:
+        Xtr[c] = Xtr[c].astype("category")
+        Xte[c] = pd.Categorical(Xte[c], categories=Xtr[c].cat.categories)
+
+    model = lgb.LGBMClassifier(
+        n_estimators=300,
+        learning_rate=0.05,
+        num_leaves=31,
+        min_child_samples=100,   
+        random_state=42,
+        n_jobs=-1,
+    )
+    model.fit(Xtr, y_train, categorical_feature=cat_cols)
+
+    p = model.predict_proba(Xte)[:, 1]
+    print(f"[LightGBM] AUC={roc_auc_score(y_test, p):.3f} "
+          f"PR-AUC={average_precision_score(y_test, p):.3f}")
+    return model, Xtr.columns
 
 if __name__ == "__main__":
     X, y, thang = get_model_data()
     X_train, X_test, y_train, y_test = time_split(X, y, thang)
     print("Train:", X_train.shape, "| Test:", X_test.shape)
     run_baseline(X_train, X_test, y_train, y_test)
+    run_lgbm(X_train, X_test, y_train, y_test) 
