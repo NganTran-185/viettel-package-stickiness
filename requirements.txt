@@ -1,0 +1,9 @@
+streamlit
+pandas
+pyarrow
+lightgbm
+scikit-learn
+shap
+matplotlib
+pyyaml
+jinja2
