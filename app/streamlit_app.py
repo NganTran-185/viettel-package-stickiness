@@ -9,11 +9,31 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))   # cho thấy thư m�
 ROOT = Path(__file__).resolve().parents[1]
 
 st.set_page_config(page_title="Viettel Package Stickiness", layout="wide")
-st.title("📶 Package-Stickiness Dashboard")
+st.markdown("""
+<div style="padding:1.5rem 1.8rem; border-radius:16px;
+            background:linear-gradient(120deg,#1a1a2e 0%,#16213e 45%,#e94560 110%);
+            margin-bottom:1.2rem;">
+  <div style="display:flex; align-items:center; gap:.6rem;">
+    <span style="font-size:1.8rem;">📶</span>
+    <h1 style="margin:0; color:#fff; font-size:1.7rem; font-weight:700;">
+      Package-Stickiness Intelligence</h1>
+  </div>
+  <p style="margin:.5rem 0 0; color:#cfd3dc; font-size:.95rem;">
+    Predicting whether a telco data plan survives ≥6 months — at the moment of sale.
+  </p>
+</div>
+""", unsafe_allow_html=True)
+
+m1, m2, m3, m4 = st.columns(4)
+m1.metric("Registrations", "162K")
+m2.metric("Model AUC", "0.867", help="Out-of-time validation (train Mar–Apr, test May)")
+m3.metric("Leaks removed", "4", help="Found via per-feature AUC scan + SHAP")
+m4.metric("Sellers scored", "1,561")
+
+
 st.caption("Predict at point-of-sale whether a data plan survives ≥6 months. "
            "Proof-of-concept: Thanh Hoa, Mar–May 2026.")
-
-tab1, tab2, tab3 = st.tabs(["📊 Overview", "🔮 Score a plan", "👥 Seller scorecard"])
+tab1, tab2, tab3 = st.tabs(["📊 Overview", "🔮 Score a plan", "🏆 Seller scorecard"])
 
 #  TAB 1: OVERVIEW 
 with tab1:
