@@ -49,6 +49,9 @@ Interactive Streamlit app with 3 tabs:
 2. **Score a plan** — enter point-of-sale features → survival probability
 3. **Seller scorecard** — *actual vs model-expected* survival per seller, isolating individual skill from product-mix advantage
 
+## Scorecard validation
+To check the residual measures real seller skill rather than noise, I computed residuals independently in two periods (train Mar→test Apr, and train Mar–Apr→test May) and correlated them per seller. Across 690 sellers present in both, residuals correlate at r = 0.31 — a clear positive signal that flagged sellers stay flagged, indicating the score captures something stable over time. It remains a decision-support tool (review candidates), not a definitive performance verdict; per-seller confidence intervals are listed as future work.
+
 ## Tech stack
 
 Python · pandas · LightGBM · scikit-learn · SHAP · Streamlit · pytest

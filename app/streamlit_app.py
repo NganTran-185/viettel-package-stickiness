@@ -133,6 +133,10 @@ with tab3:
     st.header("Seller scorecard — actual vs model-expected survival")
     st.caption("Residual = actual − expected. Negative = sells worse than the "
                "plan mix predicts (review candidate). Removes product-mix advantage.")
+    st.caption("⚠️ Seller IDs anonymized (Seller_NNN). Internal-facing tool by design — "
+               "shown to demonstrate methodology, not to expose individuals.Validated for temporal stability (residuals correlate r=0.31 across two "
+           "independent periods, n=690). Decision-support tool, not a performance verdict. "
+           "Seller IDs anonymized.") 
 
     sc_path = ROOT / "reports" / "scorecard.csv"
     if not sc_path.exists():
@@ -140,7 +144,6 @@ with tab3:
     else:
         sc = pd.read_csv(sc_path)
 
-        # bộ lọc số gói tối thiểu
         min_n = st.slider("Min sales per seller", 30, 200, 30, step=10)
         view = sc[sc["n_sales"] >= min_n].copy()
 
